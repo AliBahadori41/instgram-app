@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+    app:
+        build:
+            args:
+                user: instagram
+                uid: 1000
+            context: ./
+            dockerfile: docker/php/Dockerfile
+        image: instagram
+        container_name: instagram-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - instagram
+    db:
+        image: mysql:latest
+        container_name: instagram-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - ./docker/database/init_db.sql
+        networks:
+            - instagram
+    nginx:
+        image: nginx:latest
+        container_name: instagram-nginx
+        restart: unless-stopped
+        ports:
+            - 8000:80
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx:/etc/nginx/conf.d
+        networks:
+            - instagram
+
+networks:
+    instagram:
+        driver: bridge
+
