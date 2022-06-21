@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('type');
             $table->string('location');
+            $table->boolean('comment_off', false);
             $table->timestamps();
         });
     }
