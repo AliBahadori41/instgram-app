@@ -2,6 +2,9 @@
 
 declare(strict_types = 1);
 
+use App\GraphQL\Mutations\User\Auth\LoginMutation;
+use App\GraphQL\Types\User\Auth\AuthType;
+
 return [
     'route' => [
         // The prefix for routes; do NOT use a leading slash!
@@ -78,11 +81,11 @@ return [
                 // ExampleQuery::class,
             ],
             'mutation' => [
-                // ExampleMutation::class,
+                LoginMutation::class,
             ],
             // The types only available in this schema
             'types' => [
-                // ExampleType::class,
+                AuthType::class,
             ],
 
             // Laravel HTTP middleware
