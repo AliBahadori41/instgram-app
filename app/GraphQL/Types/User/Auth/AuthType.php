@@ -11,7 +11,7 @@ class AuthType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'User/Auth/Auth',
-        'description' => 'A type'
+        'description' => 'User Login Response Type'
     ];
 
     public function fields(): array
