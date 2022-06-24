@@ -21,7 +21,7 @@ class UserSchema implements ConfigConvertible
             'types' => [
                 'ProfileType' => ProfileType::class,
             ],
-            // 'middleware' => ['auth'],
+            'middleware' => ['auth:sanctum'],
         ];
     }
 }

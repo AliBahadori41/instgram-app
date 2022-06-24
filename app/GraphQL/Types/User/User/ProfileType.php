@@ -17,7 +17,10 @@ class ProfileType extends GraphQLType
     public function fields(): array
     {
         return [
-            'full_name' => [
+            'name' => [
+                'type' => Type::string(),
+            ],
+            'username' => [
                 'type' => Type::string(),
             ],
             'email' => [

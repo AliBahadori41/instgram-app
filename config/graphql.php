@@ -124,7 +124,7 @@ return [
         'controller' => \Rebing\GraphQL\GraphQLController::class . '@graphiql',
         'middleware' => [],
         'view' => 'graphql::graphiql',
-        'display' => env('ENABLE_GRAPHIQL', true),
+        'display' => env('ENABLE_GRAPHIQL', false),
     ],
 
     /*
