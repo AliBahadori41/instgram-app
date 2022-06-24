@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use App\GraphQL\Mutations\User\Auth\LoginMutation;
 use App\GraphQL\Types\User\Auth\AuthType;
+use App\GraphQL\Schemas\UserSchema;
 
 return [
     'route' => [
@@ -38,43 +39,6 @@ return [
         'enable' => true,
     ],
 
-    // The schemas for query and/or mutation. It expects an array of schemas to provide
-    // both the 'query' fields and the 'mutation' fields.
-    //
-    // You can also provide a middleware that will only apply to the given schema
-    //
-    // Example:
-    //
-    //  'schemas' => [
-    //      'default' => [
-    //          'controller' => MyController::class . '@method',
-    //          'query' => [
-    //              App\GraphQL\Queries\UsersQuery::class,
-    //          ],
-    //          'mutation' => [
-    //
-    //          ]
-    //      ],
-    //      'user' => [
-    //          'query' => [
-    //              App\GraphQL\Queries\ProfileQuery::class,
-    //          ],
-    //          'mutation' => [
-    //
-    //          ],
-    //          'middleware' => ['auth'],
-    //      ],
-    //      'user/me' => [
-    //          'query' => [
-    //              App\GraphQL\Queries\MyProfileQuery::class,
-    //          ],
-    //          'mutation' => [
-    //
-    //          ],
-    //          'middleware' => ['auth'],
-    //      ],
-    //  ]
-    //
     'schemas' => [
         'default' => [
             'query' => [
@@ -85,7 +49,7 @@ return [
             ],
             // The types only available in this schema
             'types' => [
-                AuthType::class,
+               AuthType::class,
             ],
 
             // Laravel HTTP middleware
@@ -97,17 +61,9 @@ return [
             // An array of middlewares, overrides the global ones
             'execution_middleware' => null,
         ],
+        'user' => UserSchema::class,
     ],
 
-    // The global types available to all schemas.
-    // You can then access it from the facade like this: GraphQL::type('user')
-    //
-    // Example:
-    //
-    // 'types' => [
-    //     App\GraphQL\Types\UserType::class
-    // ]
-    //
     'types' => [
         // ExampleType::class,
         // ExampleRelationType::class,
